@@ -12,7 +12,7 @@ endif()
 project ("Elektronicky_ukolovnik_kyriienko_zovinec")
 
 # Add source to this project's executable.
-add_executable (Elektronicky_ukolovnik_kyriienko_zovinec "Elektronicky_ukolovnik_kyriienko_zovinec.cpp" "Elektronicky_ukolovnik_kyriienko_zovinec.h")
+add_executable (Elektronicky_ukolovnik_kyriienko_zovinec "Elektronicky_ukolovnik_kyriienko_zovinec.cpp" "Elektronicky_ukolovnik_kyriienko_zovinec.h" "Objects/Task.cpp" "Objects/Category.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Elektronicky_ukolovnik_kyriienko_zovinec PROPERTY CXX_STANDARD 20)
