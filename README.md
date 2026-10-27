@@ -1,1 +1,1 @@
-# elektronicky_ukolovnik_kyriienko_zovinec
+Elektronický úkolovník Kyriienko a Žovinec
