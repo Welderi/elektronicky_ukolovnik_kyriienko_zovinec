@@ -12,10 +12,14 @@ endif()
 project ("Elektronicky_ukolovnik_kyriienko_zovinec")
 
 # Add source to this project's executable.
-add_executable (Elektronicky_ukolovnik_kyriienko_zovinec "Elektronicky_ukolovnik_kyriienko_zovinec.cpp" "Elektronicky_ukolovnik_kyriienko_zovinec.h" "Objects/Task.cpp" "Objects/Category.cpp")
+add_executable (Elektronicky_ukolovnik_kyriienko_zovinec "Elektronicky_ukolovnik_kyriienko_zovinec.cpp" "Elektronicky_ukolovnik_kyriienko_zovinec.h" "Objects/Task.cpp" "Objects/Category.cpp" "Start/start.cpp" "Services/CategoryService.cpp" "Services/TaskService.cpp" "Objects/DefaultCategory.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Elektronicky_ukolovnik_kyriienko_zovinec PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Add tests and install targets if needed.
+
+add_subdirectory(third_party/sqlite3)
+
+target_link_libraries(Elektronicky_ukolovnik_kyriienko_zovinec PRIVATE sqlite3)
