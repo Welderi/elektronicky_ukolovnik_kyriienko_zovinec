@@ -2,18 +2,18 @@
 
 typedef struct {
 
-	int TaskId;
+	int id;
 
-	char TaskName[100];
+	char name[100];
 
-	char TaskText[255];
+	char text[255];
 
-	char TaskDateTime[20];
+	char datetime[20];
 
-	int TaskIsDone;
+	int isDone;
 
-	int TaskPriority;
+	int priority;
 
-	int taskCategoryId;
+	int categoryId;
 
 } Task;

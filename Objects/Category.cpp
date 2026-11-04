@@ -2,8 +2,8 @@
 
 typedef struct {
 
-	int CategoryId;
+	int id;
 
-	char CategoryName[100];
+	char name[100];
 
 } Category;
