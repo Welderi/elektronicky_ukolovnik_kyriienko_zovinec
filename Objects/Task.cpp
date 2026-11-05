@@ -14,6 +14,4 @@ typedef struct {
 
 	int priority;
 
-	int categoryId;
-
 } Task;
