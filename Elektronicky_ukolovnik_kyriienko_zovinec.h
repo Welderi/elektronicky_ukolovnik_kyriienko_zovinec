@@ -4,5 +4,12 @@
 #pragma once
 
 #include <iostream>
+#include "Objects/Task.cpp"
 
-// TODO: Reference additional headers your program requires here.
+Task* getTasks(int* count);
+int createTask(Task* task);
+int start();
+int updateTask(Task* task);
+int deleteTask(int id);
+
+
