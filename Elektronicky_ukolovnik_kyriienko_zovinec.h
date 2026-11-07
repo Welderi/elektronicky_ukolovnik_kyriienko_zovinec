@@ -24,3 +24,4 @@ void zmenit_prioritu();
 void zmenit_datum();
 void odstranit_ukol();
 void kalendar_tyden();
+void pockej();

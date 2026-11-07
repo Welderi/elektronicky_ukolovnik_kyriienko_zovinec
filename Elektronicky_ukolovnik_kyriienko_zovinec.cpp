@@ -30,6 +30,9 @@ int main()
         case 0: printf("Nashledanou!\n"); break;
         default: printf("Neplatna volba.\n");
         }
+        if (volba != 0) {
+            pockej();
+        }
     } while (volba != 0);
 
     return 0;
@@ -39,6 +42,7 @@ int main()
 // Vypise nadpis a nabidku moznosti.
 void vypis_menu()
 {
+    system("cls"); // Smaze vse na obrazovce
     printf("\n");
     printf("  _   _ _         _                  _ _    \n");
     printf(" | | | | | _____ | | _____   ___ __ (_) | __\n");
@@ -62,10 +66,19 @@ void vypis_menu()
     printf(" Volba: ");
 }
 
+void pockej() // ceka na Enter a teprve pak znovu vypise menu
+{
+    printf("\nStiskni Enter pro pokracovani...");
+    while (getchar() != '\n')   // zahodi zbytek radku po scanf
+        ;
+    getchar();                  // ceka, az uzivatel zmackne Enter
+}
 
 // Vypise vsechny ukoly ze souboru v tabulce
 void zobrazit_vse()
 {
+    system("cls");   // smaze menu, aby byl videt jen vypis
+
     int count; 
     int i;
     Task* tasks = getTasks(&count);   // nacte ukoly do pole alokovaneho pres malloc, pocet zapise do count
@@ -102,7 +115,7 @@ void zobrazit_vse()
         }
     }
 
-    free(tasks);   // uvolneni pameti, kterou alokovala getTask
+    free(tasks);   // uvolneni pameti, kterou alokovala getTasks
 }
 
 void pridat_ukol() { printf("Zatim neni hotovo.\n"); }
