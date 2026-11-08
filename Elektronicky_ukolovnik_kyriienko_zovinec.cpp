@@ -118,7 +118,45 @@ void zobrazit_vse()
     free(tasks);   // uvolneni pameti, kterou alokovala getTasks
 }
 
-void pridat_ukol() { printf("Zatim neni hotovo.\n"); }
+void pridat_ukol() {
+    system("cls");
+
+    // novy ukol s prazdnymi poli (id doplni createTask)
+    Task task1 = {
+        .name = "",
+        .text = "",
+        .datetime = "",
+        .isDone = 0,
+        .priority = 1
+    };
+
+    printf("Pridavani ukolu:\n");
+
+    printf("Zadej nazev ukolu: ");
+    scanf(" %99[^\n]", task1.name); // name[100];
+
+    printf("Zadej popis ukolu: ");
+	scanf(" %254[^\n]", task1.text); // text[255];
+
+    printf("Zadej datum a cas ukolu (YYYY-MM-DD HH:MM): ");
+	scanf(" %19[^\n]", task1.datetime); // datetime[20];
+
+    printf("Zadej prioritu ukolu (1-3): ");
+    scanf("%d", &task1.priority);
+
+    createTask(&task1);   // ulozi do souboru a doplni task id
+
+    // vypis pridaneho ukolu
+    printf("\nUkol byl uspesne pridan:\n");
+    printf("\n  ID  Hotovo  Datum a cas        Priorita  Nazev\n");
+    printf(" ---------------------------------------------------------\n");
+    printf(" %3d   [ ]   %-17s  %d         %s\n",
+        task1.id,
+        task1.datetime,
+        task1.priority,
+        task1.name);
+}
+
 void zobrazit_dnes() { printf("Zatim neni hotovo.\n"); }
 void zobrazit_den() { printf("Zatim neni hotovo.\n"); }
 void oznacit_hotovo() { printf("Zatim neni hotovo.\n"); }
