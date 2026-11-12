@@ -20,7 +20,14 @@ int main()
 		switch (volba) {
 		case 1: pridat_ukol(); break;
 		case 2: zobrazit_dnes(); break;
-		case 3: zobrazit_den(); break;
+		case 3: {
+			system("cls");
+			char datum[11];
+			printf("Zadej datum (YYYY-MM-DD): ");
+			scanf(" %10[^\n]", datum);
+			zobrazit_den(datum);
+			break;
+		}
 		case 4: zobrazit_vse(); break;
 		case 5: oznacit_hotovo(); break;
 		case 6: zmenit_prioritu(); break;
@@ -158,16 +165,22 @@ void pridat_ukol() {
 }
 
 void zobrazit_dnes() {
-	system("cls");
-
 	// ziskani dnesniho data ve formatu YYYY-MM-DD (knihovna <time.h>)
-	char dnes[11]; // "RRRR-MM-DD\0"
+	char datum[11]; // "RRRR-MM-DD\0"
 	time_t ted = time(NULL);
-	strftime(dnes, 11, "%Y-%m-%d", localtime(&ted));    //localtime(&ted) je aktuální čas rozložený na části, strftime si z něj bere hodnoty
+	strftime(datum, 11, "%Y-%m-%d", localtime(&ted));    //localtime(&ted) je aktuální čas rozložený na části, strftime si z něj bere hodnoty
 
+	zobrazit_den(datum);   // vypis ukolu na dnesni datum
+}
+
+void zobrazit_den(char datum[]) {
+	system("cls");
+	
 	int count;
 	int i;
 	Task* tasks = getTasks(&count);   // nacte ukoly do pole alokovaneho pres malloc, pocet zapise do count
+
+	printf("Ukoly na den: %s\n", datum);
 
 	// if prazdny soubor
 	if (count == 0) {
@@ -175,13 +188,11 @@ void zobrazit_dnes() {
 		return;
 	}
 
-	printf("Dnesni datum: %s", dnes);
-	printf("\nUkoly na dnesni den:\n");
 	printf("\n  ID  Hotovo  Datum a cas        Priorita  Nazev\n");
 	printf(" ---------------------------------------------------------\n");
 
 	for (i = 0; i < count; i++) {
-		if (strncmp(tasks[i].datetime, dnes, 10) == 0) { // porovna prvnich 10 znaku (YYYY-MM-DD) s dnesnim datem
+		if (strncmp(tasks[i].datetime, datum, 10) == 0) { // porovna prvnich 10 znaku (YYYY-MM-DD) se zadanym datem
 			printf(" %3d   ", tasks[i].id); // cislo zarovnane doprava na 3 znaky
 
 			if (tasks[i].isDone == 1) {
@@ -206,7 +217,6 @@ void zobrazit_dnes() {
 	free(tasks);   // uvolneni pameti, kterou alokovala getTasks
 }
 
-void zobrazit_den() { printf("Zatim neni hotovo.\n"); }
 void oznacit_hotovo() { printf("Zatim neni hotovo.\n"); }
 void zmenit_prioritu() { printf("Zatim neni hotovo.\n"); }
 void zmenit_datum() { printf("Zatim neni hotovo.\n"); }

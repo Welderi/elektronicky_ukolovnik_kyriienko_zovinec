@@ -17,7 +17,7 @@ int deleteTask(int id);
 void vypis_menu();
 void pridat_ukol();
 void zobrazit_dnes();
-void zobrazit_den();
+void zobrazit_den(char datum[]);
 void zobrazit_vse();
 void oznacit_hotovo();
 void zmenit_prioritu();
